@@ -1,0 +1,21 @@
+# Build / IDE
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Publish & Installer
+publish/
+dist/
+tools/InnoSetup6/
+
+# NuGet
+packages/
+
+# Publish
+publish/
+
+# OS
+Thumbs.db
+Desktop.ini

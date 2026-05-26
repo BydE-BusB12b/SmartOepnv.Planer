@@ -1,0 +1,14 @@
+Willkommen bei Smart-ÖPNV Planer
+
+Dieses Programm installiert die Verwaltungssoftware für:
+  • Routen und Haltestellen
+  • Ansagen und Sonderansagen
+  • Navidaten (Fahrweg)
+  • Fahrer- und Mitarbeiterdaten
+  • Versand an GPSAnsagen-Fahrzeuge
+
+Es ist keine separate .NET-Installation nötig – alle benötigten
+Komponenten werden mit installiert.
+
+Nach der Installation können Sie optional ein Desktopsymbol anlegen
+und das Programm direkt starten.

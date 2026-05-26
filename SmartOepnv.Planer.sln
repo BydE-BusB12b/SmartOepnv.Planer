@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOepnv.Planer", "src\SmartOepnv.Planer\SmartOepnv.Planer.csproj", "{A8F3C2E1-9B4D-4F6A-8C1E-2D5E7F9A1B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOepnv.Core", "..\SmartOepnv.Shared\src\SmartOepnv.Core\SmartOepnv.Core.csproj", "{4930A6EB-BDEF-4580-919F-36EF414A0106}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOepnv.AppShared", "..\SmartOepnv.Shared\src\SmartOepnv.AppShared\SmartOepnv.AppShared.csproj", "{7CAC1462-DFEE-43A2-87A1-684809C0F703}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8F3C2E1-9B4D-4F6A-8C1E-2D5E7F9A1B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F3C2E1-9B4D-4F6A-8C1E-2D5E7F9A1B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F3C2E1-9B4D-4F6A-8C1E-2D5E7F9A1B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F3C2E1-9B4D-4F6A-8C1E-2D5E7F9A1B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4930A6EB-BDEF-4580-919F-36EF414A0106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4930A6EB-BDEF-4580-919F-36EF414A0106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4930A6EB-BDEF-4580-919F-36EF414A0106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4930A6EB-BDEF-4580-919F-36EF414A0106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CAC1462-DFEE-43A2-87A1-684809C0F703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CAC1462-DFEE-43A2-87A1-684809C0F703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CAC1462-DFEE-43A2-87A1-684809C0F703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CAC1462-DFEE-43A2-87A1-684809C0F703}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

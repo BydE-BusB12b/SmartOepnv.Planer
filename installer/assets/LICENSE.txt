@@ -1,0 +1,9 @@
+Smart-ÖPNV Planer – Nutzungsbedingungen (Platzhalter)
+
+Copyright (c) Smart-ÖPNV
+
+Die Software wird zur Verwaltung von ÖPNV-Daten (Routen, Haltestellen,
+Ansagen, Navidaten, Fahrer) bereitgestellt.
+
+Durch die Installation stimmen Sie der Nutzung im Rahmen Ihrer
+betrieblichen Vereinbarung zu.
