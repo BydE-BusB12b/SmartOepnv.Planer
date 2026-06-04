@@ -28,4 +28,4 @@ if errorlevel 1 (
 echo Starte: %EXE%
 start "" "%~dp0%EXE%"
 echo Planer wurde gestartet.
-timeout /t 3 >nul
+exit /b 0

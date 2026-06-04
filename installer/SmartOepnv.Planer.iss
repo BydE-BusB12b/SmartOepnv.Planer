@@ -5,7 +5,7 @@
 #define MyAppExeName "Smart-OEPNV-Planer.exe"
 #define MyAppPublisher "Smart-ÖPNV"
 #define MyAppURL "https://github.com/BydE-BusB12b/GPSAnsagen"
-#define MyAppVersion "0.3.1"
+#define MyAppVersion "0.3.3"
 
 [Setup]
 AppId={{B4E8F2A1-3C9D-4E7F-8A1B-2D5E6F9C0A3B}
