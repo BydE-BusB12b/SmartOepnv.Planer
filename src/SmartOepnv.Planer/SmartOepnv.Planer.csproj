@@ -11,9 +11,9 @@
     <Product>Smart-ÖPNV Planer</Product>
     <Company>Smart-ÖPNV</Company>
     <Description>Verwaltung von Haltestellen, Routen, Ansagen, Navidaten und Fahrerdaten</Description>
-    <Version>0.3.3</Version>
-    <FileVersion>0.3.3.0</FileVersion>
-    <AssemblyVersion>0.3.3.0</AssemblyVersion>
+    <Version>0.4.17</Version>
+    <FileVersion>0.4.17.0</FileVersion>
+    <AssemblyVersion>0.4.17.0</AssemblyVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\app.ico</ApplicationIcon>
   </PropertyGroup>

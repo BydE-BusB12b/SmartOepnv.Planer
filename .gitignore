@@ -9,6 +9,7 @@ obj/
 publish/
 dist/
 tools/InnoSetup6/
+_Backups/
 
 # NuGet
 packages/

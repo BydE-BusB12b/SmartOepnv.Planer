@@ -26,4 +26,21 @@ SevSignPdfGenerator.Generate(
     Path.Combine(outputDir, "_layout_s28.pdf"),
     assets);
 
-Console.WriteLine("Generated RE13 + S28 layout PDFs in " + outputDir);
+SevSignPdfGenerator.Generate(
+    new SevSignData
+    {
+        Line = "RE 1",
+        Destination = "Test vier Logos",
+        Stops = ["A", "B"],
+        Operators =
+        [
+            SevOperatorKind.RegioBahn,
+            SevOperatorKind.GoRheinland,
+            SevOperatorKind.NationalExpress,
+            SevOperatorKind.RheinRuhrBahn
+        ]
+    },
+    Path.Combine(outputDir, "_layout_4logos.pdf"),
+    assets);
+
+Console.WriteLine("Generated RE13 + S28 + 4-logos layout PDFs in " + outputDir);

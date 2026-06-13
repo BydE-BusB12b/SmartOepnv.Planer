@@ -21,7 +21,7 @@ for i, img in enumerate(imgs):
     (OUT / name).write_bytes(data)
     print(f"  {i}: {name}")
 
-# Extract operator logos from different PDFs
+# Extract operator logos from different PDFs (large logo bottom-left, not footer VRR/mobil)
 samples = {
     "S28 Wuppertal-Düsseldorf.pdf": "regiobahn",
     "RE7 Neuss-Dormagen.pdf": "re7_neuss",
@@ -37,10 +37,17 @@ for pdf_name, prefix in samples.items():
         base = doc.extract_image(img[0])
         ext = base["ext"]
         w, h = base["width"], base["height"]
-        # operator logos are usually wide at bottom left (y > 680, x < 600)
         rects = pg.get_image_rects(img[0])
         for ri, r in enumerate(rects):
-            if r.y0 > 650 and r.x0 < 600 and w > 80:
+            # Großes Betreiberlogo links unten; Footer-Logos (VRR, mobil.nrw) weiter rechts / kleiner
+            if r.y0 <= 650 or r.x0 >= 250 or w < 120 or h < 40:
+                continue
+            if w > 180 and h > 90 and prefix == "re13_db":
+                # RE13-DB-Logo ist breiter als hoch; VRR-Footer ist eher quadratisch/klein
+                name = f"operator_{prefix}_{w}x{h}.{ext}"
+                (OUT / name).write_bytes(base["image"])
+                print(f"operator from {pdf_name}: {name} at {r}")
+            elif prefix != "re13_db":
                 name = f"operator_{prefix}_{w}x{h}.{ext}"
                 (OUT / name).write_bytes(base["image"])
                 print(f"operator from {pdf_name}: {name} at {r}")
