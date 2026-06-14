@@ -7,6 +7,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ProjectsRoot = Split-Path -Parent $Root
 $Stamp = Get-Date -Format "yyyy-MM-dd_HHmm"
 $DataBackupRoot = Join-Path $Root "_Backups\Smart-OEPNV\AppData"
 
@@ -41,7 +42,7 @@ if (-not $SkipDataBackup) {
 Write-Step "Git-Repositories"
 $AnyCommit = $false
 foreach ($Name in $Repos) {
-    $RepoPath = Join-Path $Root $Name
+    $RepoPath = Join-Path $ProjectsRoot $Name
     if (-not (Test-Path (Join-Path $RepoPath ".git"))) {
         Write-Host "  Ueberspringe (kein Git): $Name" -ForegroundColor DarkYellow
         continue
