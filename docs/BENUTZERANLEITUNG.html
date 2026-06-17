@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart-ÖPNV Planer – Benutzeranleitung</title>
+  <style>
+    :root { --primary: #0D47A1; --dark: #002171; --text: #1a1a2e; --muted: #4a5f82; --bg: #f4f7fc; --card: #fff; }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", system-ui, sans-serif; line-height: 1.55; color: var(--text); background: var(--bg); margin: 0; }
+    header { background: linear-gradient(135deg, var(--dark), var(--primary)); color: #fff; padding: 2.5rem 2rem; }
+    header h1 { margin: 0 0 .4rem; font-size: 2rem; }
+    header p { margin: 0; opacity: .9; max-width: 52rem; }
+    main { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    nav.toc { background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    nav.toc h2 { margin-top: 0; font-size: 1.1rem; }
+    nav.toc ol { columns: 2; column-gap: 2rem; margin: 0; padding-left: 1.25rem; }
+    @media (max-width: 700px) { nav.toc ol { columns: 1; } }
+    section { background: var(--card); border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    section h2 { color: var(--primary); margin-top: 0; border-bottom: 2px solid #e8eef8; padding-bottom: .5rem; }
+    section h3 { color: var(--dark); margin-top: 1.4rem; font-size: 1.05rem; }
+    figure { margin: 1.25rem 0; }
+    figure img { width: 100%; border: 1px solid #d0d9ea; border-radius: 8px; display: block; }
+    figcaption { font-size: .9rem; color: var(--muted); margin-top: .5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; margin: 1rem 0; }
+    th, td { border: 1px solid #d8e2f0; padding: .5rem .65rem; text-align: left; vertical-align: top; }
+    th { background: #e8eef8; }
+    code, kbd { background: #eef3fb; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    ul, ol { padding-left: 1.35rem; }
+    .tip { background: #e8f5e9; border-left: 4px solid #43a047; padding: .75rem 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+    .warn { background: #fff8e1; border-left: 4px solid #f9a825; padding: .75rem 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+    footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 2rem; }
+    @media print {
+      body { background: #fff; }
+      section, nav.toc { box-shadow: none; break-inside: avoid; }
+      header { background: var(--primary); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      figure img { max-height: 420px; object-fit: contain; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Smart-ÖPNV Planer – Benutzeranleitung</h1>
+  <p>Vollständige Anleitung zur Windows-Verwaltungssoftware für Routen, Haltestellen, Ansagen, Navidaten, Disposition, Dienstvorlagen und Versand an GPSAnsagen-Fahrzeuge.</p>
+</header>
+
+<main>
+<nav class="toc">
+  <h2>Inhaltsverzeichnis</h2>
+  <ol>
+    <li><a href="#einfuehrung">Einführung</a></li>
+    <li><a href="#installation">Installation &amp; erste Schritte</a></li>
+    <li><a href="#anmeldung">Anmeldung &amp; Sperre</a></li>
+    <li><a href="#dropbox">Dropbox &amp; Synchronisation</a></li>
+    <li><a href="#oberflaeche">Oberfläche &amp; Navigation</a></li>
+    <li><a href="#uebersicht">Übersicht (Dashboard)</a></li>
+    <li><a href="#routen">Routen</a></li>
+    <li><a href="#haltestellen">Haltestellenbibliothek</a></li>
+    <li><a href="#ansagen">Ansagen-Kartei</a></li>
+    <li><a href="#navidaten">Navidaten</a></li>
+    <li><a href="#personal">Personalverwaltung</a></li>
+    <li><a href="#fahrerdispo">Fahrerdisposition</a></li>
+    <li><a href="#fahrzeugdispo">Fahrzeugdisposition</a></li>
+    <li><a href="#fahrzeugverwaltung">Fahrzeugverwaltung</a></li>
+    <li><a href="#dienstvorlagen">Dienstvorlagen</a></li>
+    <li><a href="#vorlagen-bibliothek">Vorlagen-Bibliothek</a></li>
+    <li><a href="#nachrichten">Nachrichten</a></li>
+    <li><a href="#anzeigen">Anzeigen &amp; Hinweise</a></li>
+    <li><a href="#sev">SEV-Schilder</a></li>
+    <li><a href="#zeitwirtschaft">Zeitwirtschaft</a></li>
+    <li><a href="#versand">Versand &amp; Versionen</a></li>
+    <li><a href="#einstellungen">Einstellungen</a></li>
+    <li><a href="#backup">Backup &amp; Dateipfade</a></li>
+    <li><a href="#glossar">Glossar</a></li>
+  </ol>
+</nav>
+
+<section id="einfuehrung">
+  <h2>1. Einführung</h2>
+  <p>Der <strong>Smart-ÖPNV Planer</strong> ist die zentrale Windows-Anwendung zur Pflege aller Fahrdaten, die an die Android-App <em>GPSAnsagen</em> auf den Bussen übertragen werden. Er ergänzt die Leitstellen-App und dient Disponenten, Fahrplanbearbeitern und Verwaltung.</p>
+  <h3>Hauptaufgaben</h3>
+  <ul>
+    <li>Routen, Haltestellen, Ansagen und Fahrwege (Navidaten) pflegen</li>
+    <li>Fahrer- und Fahrzeugdisposition planen (inkl. FPersV-Prüfung)</li>
+    <li>Dienstvorlagen aus Fahrplänen erstellen und als PDF exportieren</li>
+    <li>Personal, Fahrzeuge, Mängelkarte und Dokumentenfristen verwalten</li>
+    <li>SEV-Schilder (NRW), Ziellisten und Hinweise erstellen</li>
+    <li>Daten per Dropbox oder JSON an Fahrzeuge senden</li>
+  </ul>
+  <h3>Systemvoraussetzungen</h3>
+  <ul>
+    <li>Windows 10 oder neuer (64 Bit)</li>
+    <li>Kein separates .NET nötig bei Installation über <code>Setup-Smart-OEPNV-Planer-x64.exe</code> (self-contained)</li>
+    <li>Internet für Dropbox-Synchronisation</li>
+    <li>Empfohlen: Bildschirmauflösung mindestens 1280×720, besser Full HD</li>
+  </ul>
+</section>
+
+<section id="installation">
+  <h2>2. Installation &amp; erste Schritte</h2>
+  <ol>
+    <li><code>Setup-Smart-OEPNV-Planer-x64.exe</code> ausführen (liegt im Ordner <code>dist\</code> nach dem Build).</li>
+    <li>Installationsassistent durchlaufen – Standardpfad: <code>C:\Program Files\Smart-OEPNV\Planer</code></li>
+    <li>Optional: Desktop-Verknüpfung anlegen und Programm direkt starten.</li>
+    <li>Beim <strong>ersten Start</strong> zuerst <strong>Dropbox einrichten</strong> (siehe Kapitel 4), danach mit Planer-Zugang anmelden.</li>
+  </ol>
+  <p>Benutzerdaten werden unter <code>%AppData%\Smart-OEPNV\Planer</code> gespeichert – nicht im Programmordner.</p>
+</section>
+
+<section id="anmeldung">
+  <h2>3. Anmeldung &amp; Sperre</h2>
+  <figure>
+    <img src="screenshots/01-login.png" alt="Anmeldung Smart-ÖPNV Planer" />
+    <figcaption>Abb. 1 – Anmeldung (Hauptfenster mit Login-Dialog)</figcaption>
+  </figure>
+  <p>Nach dem Start erscheint das Hauptfenster mit einem Anmeldedialog. Es kann sich nur <strong>ein Planer-Nutzer gleichzeitig</strong> anmelden (Sperre über Dropbox <code>planer_session.json</code>).</p>
+  <h3>Anmeldedaten</h3>
+  <ul>
+    <li>Planer-Zugang wird in der <strong>Personalverwaltung</strong> pro Mitarbeiter vergeben (Rolle „Planer“, Benutzername und Passwort).</li>
+    <li>Benutzername und Passwort case-sensitiv eingeben.</li>
+  </ul>
+  <h3>Buttons im Anmeldedialog</h3>
+  <table>
+    <tr><th>Button</th><th>Funktion</th></tr>
+    <tr><td><strong>Anmelden</strong></td><td>Prüft Zugang, synchronisiert Arbeitsstand, öffnet Planer</td></tr>
+    <tr><td><strong>Abbrechen</strong></td><td>Beendet das Programm</td></tr>
+    <tr><td><strong>Dropbox einrichten…</strong></td><td>Öffnet Einstellungen vor der Anmeldung</td></tr>
+    <tr><td><strong>Sperre freigeben (Hauptnutzer)…</strong></td><td>Nur sichtbar wenn anderer Nutzer gesperrt hat</td></tr>
+  </table>
+  <p>Nach erfolgreicher Anmeldung erscheint kurz der Dialog <em>„Wir synchronisieren kurz.“</em> – Arbeitsstand wird mit Dropbox abgeglichen.</p>
+  <p><strong>Abmelden:</strong> Symbol oben rechts (Logout). Dabei wird gespeichert, hochgeladen und die Sperre freigegeben.</p>
+</section>
+
+<section id="dropbox">
+  <h2>4. Dropbox &amp; Synchronisation</h2>
+  <p>Der Planer nutzt Dropbox für zwei getrennte Zwecke:</p>
+  <table>
+    <tr><th>Datei</th><th>Inhalt</th><th>Wann</th></tr>
+    <tr><td><code>planer_workspace.json</code></td><td>Kompletter Arbeitsstand (Routen, Mitarbeiter, Einstellungen …)</td><td>Automatisch bei Login, Logout, Beenden</td></tr>
+    <tr><td><code>routes_export.json</code></td><td>Routen-Paket für GPSAnsagen-Apps</td><td>Manuell über <strong>Versand</strong></td></tr>
+  </table>
+  <h3>Dropbox verbinden</h3>
+  <ol>
+    <li>Einstellungen öffnen (Zahnrad oder Navigationspunkt <strong>Einstellungen</strong>).</li>
+    <li><strong>Mit Dropbox verbinden</strong> – Browser-Anmeldung bestätigen.</li>
+    <li>Ordnerpfad prüfen (Standard: <code>/App/Smart ÖPNV</code>) und <strong>Ordnerpfad speichern</strong>.</li>
+    <li><strong>Verbindung testen</strong> zur Kontrolle.</li>
+  </ol>
+  <div class="tip">Tipp: Nach dem Login wird automatisch der neuere Stand (lokal vs. Dropbox) übernommen. Die Statuszeile unten links zeigt z.&nbsp;B. „Dropbox synchronisiert“ oder „Lokal (aktueller als Dropbox)“.</div>
+</section>
+
+<section id="oberflaeche">
+  <h2>5. Oberfläche &amp; Navigation</h2>
+  <figure>
+    <img src="screenshots/02-hauptfenster-uebersicht.png" alt="Hauptfenster mit Navigation" />
+    <figcaption>Abb. 2 – Hauptfenster: linke Navigation, Inhaltsbereich, Statusleiste</figcaption>
+  </figure>
+  <table>
+    <tr><th>Bereich</th><th>Beschreibung</th></tr>
+    <tr><td><strong>App-Leiste</strong> (oben)</td><td>Produktname, Untertitel, Logout, Einstellungen (Zahnrad)</td></tr>
+    <tr><td><strong>Navigation</strong> (links)</td><td>Wechsel zwischen allen Modulen; gelbe Badges bei offenen Aufgaben</td></tr>
+    <tr><td><strong>Inhaltsbereich</strong></td><td>Aktuell gewähltes Modul</td></tr>
+    <tr><td><strong>Statusleiste</strong> (unten)</td><td>Meldungen links, Versionsnummer rechts</td></tr>
+  </table>
+  <h3>Navigationspunkte (von oben nach unten)</h3>
+  <ol>
+    <li>Übersicht · Routen · Haltestellen · Ansagen · Navidaten</li>
+    <li>Personalverwaltung · Fahrerdisposition · Fahrzeugdisposition · Fahrzeugverwaltung</li>
+    <li>Dienstvorlagen · Vorlagen-Bibliothek · Nachrichten</li>
+    <li>Anzeigen &amp; Hinweise · SEV-Schilder · Zeitwirtschaft · Versand · Einstellungen</li>
+  </ol>
+  <p>Beim Wechseln zwischen Bereichen werden offene Änderungen automatisch gespeichert.</p>
+</section>
+
+<section id="uebersicht">
+  <h2>6. Übersicht (Dashboard)</h2>
+  <figure>
+    <img src="screenshots/02-hauptfenster-uebersicht.png" alt="Übersicht Dashboard" />
+    <figcaption>Abb. 3 – Übersicht mit Warnhinweisen und Import/Export</figcaption>
+  </figure>
+  <h3>Warnhinweise (klickbar)</h3>
+  <ul>
+    <li><strong>HU / SP – Fristen</strong> → springt zur Fahrzeugverwaltung</li>
+    <li><strong>Führerschein / FQN / Fahrerkarte</strong> → Personalverwaltung (90-Tage-Vorlauf)</li>
+    <li><strong>Kontrollen (alle 3 Monate)</strong> → Personalverwaltung (Führerschein-, FQN-, Fahrerkartenkontrolle)</li>
+  </ul>
+  <p>Die Übersicht enthält dieselben Import-/Export-Funktionen wie der Bereich <strong>Versand</strong> (siehe Kapitel 21).</p>
+</section>
+
+<section id="routen">
+  <h2>7. Routen</h2>
+  <figure>
+    <img src="screenshots/03-routen.png" alt="Routen bearbeiten" />
+    <figcaption>Abb. 4 – Routen mit Haltestellenliste</figcaption>
+  </figure>
+  <p>Hier legen Sie Fahrtrouten an und pflegen die Haltestellenreihenfolge pro Route.</p>
+  <table>
+    <tr><th>Aktion</th><th>Beschreibung</th></tr>
+    <tr><td><strong>Route hinzufügen</strong></td><td>Neue Route anlegen (Name, Linie/Kurs)</td></tr>
+    <tr><td><strong>Route löschen</strong></td><td>Ausgewählte Route entfernen</td></tr>
+    <tr><td><strong>Haltestelle +</strong></td><td>Haltestelle zur Route hinzufügen</td></tr>
+    <tr><td><strong>Speichern</strong></td><td>Haltestellen sofort lokal sichern</td></tr>
+    <tr><td><strong>✕</strong> (Zeile)</td><td>Einzelne Haltestelle aus Route entfernen</td></tr>
+  </table>
+  <p>Spalten: Haltestellen-ID, Name, GPS-Koordinaten, VRR-ID, Anzeigetext, Zeit.</p>
+</section>
+
+<section id="haltestellen">
+  <h2>8. Haltestellenbibliothek</h2>
+  <figure>
+    <img src="screenshots/04-haltestellen.png" alt="Haltestellenbibliothek" />
+    <figcaption>Abb. 5 – Zentrale Haltestellen-Stammdaten</figcaption>
+  </figure>
+  <p>Zentrale Sammlung aller Haltestellen-Vorlagen – unabhängig von einzelnen Routen.</p>
+  <ul>
+    <li><strong>Alle aus Routen übernehmen</strong> – importiert Haltestellen aus bestehenden Routen</li>
+    <li><strong>Neue Haltestelle</strong> / <strong>Duplizieren</strong> / <strong>Vorlage löschen</strong></li>
+    <li><strong>In Route einfügen</strong> / <strong>Route → Bibliothek importieren</strong></li>
+    <li><strong>VRR suchen…</strong> – Haltestelle aus VRR-Daten übernehmen</li>
+    <li>Ton: <strong>Aus Liste wählen…</strong>, <strong>Mehrere zusammenfügen…</strong>, <strong>Datei wählen…</strong></li>
+  </ul>
+  <p>Stammdaten: 5-stellige Haltestellen-ID, ITCS-Name, Anzeige, GPS (Ansage/Haltestelle), Radius, eingebetteter Ton.</p>
+</section>
+
+<section id="ansagen">
+  <h2>9. Ansagen-Kartei</h2>
+  <figure>
+    <img src="screenshots/05-ansagen.png" alt="Ansagen-Kartei" />
+    <figcaption>Abb. 6 – Ansagen mit Tonsequenz</figcaption>
+  </figure>
+  <p>Verwaltung aller Fahrzeugansagen (Tondateien, Sequenzen, Sonderansagen).</p>
+  <ul>
+    <li><strong>Neue Ansage mit Tondatei</strong> / <strong>ohne Ton</strong></li>
+    <li>Sequenz: Gong, „Nächste Haltestelle“, „Next Stop“, Pausen, Reihenfolge mit ↑/↓</li>
+    <li><strong>Vorschau abspielen</strong> – Test der Sequenz am PC</li>
+    <li><strong>Aus Routen importieren</strong> / <strong>Aus embeddedSounds importieren</strong></li>
+    <li><strong>Speichern &amp; JSON</strong> – sichert und schreibt in Exportdatei</li>
+  </ul>
+</section>
+
+<section id="navidaten">
+  <h2>10. Navidaten (Fahrweg-Editor)</h2>
+  <figure>
+    <img src="screenshots/06-navidaten.png" alt="Navidaten Karte" />
+    <figcaption>Abb. 7 – Interaktive Karte mit Fahrweg</figcaption>
+  </figure>
+  <p>Planung des exakten Fahrwegs zwischen Haltestellen auf einer Karte.</p>
+  <table>
+    <tr><th>Funktion</th><th>Beschreibung</th></tr>
+    <tr><td><strong>Haltestellen laden</strong></td><td>Haltestellen der gewählten Route auf Karte anzeigen</td></tr>
+    <tr><td><strong>Straße snappen</strong></td><td>Verbindung an Straßennetz ausrichten</td></tr>
+    <tr><td><strong>Alle Verbindungen snappen</strong></td><td>Gesamten Fahrweg snappen</td></tr>
+    <tr><td><strong>Busspur / direkt</strong></td><td>Busspur bevorzugen, ohne PKW-Umweg</td></tr>
+    <tr><td><strong>Schritt zurück</strong> / <strong>Verbindung löschen</strong></td><td>Bearbeitung rückgängig / Linien entfernen</td></tr>
+    <tr><td><strong>Speichern</strong></td><td>Fahrweg in Route übernehmen (Button-Farbe zeigt Status)</td></tr>
+  </table>
+  <p><strong>Bedienung:</strong> Knoten A→B verbinden; gelb = manuell, blau = gesnappt, orange = Busspur; Shift+Klick = Zwischenpunkt; Rechtsklick = Wegpunkt löschen.</p>
+</section>
+
+<section id="personal">
+  <h2>11. Personalverwaltung</h2>
+  <figure>
+    <img src="screenshots/07-personalverwaltung.png" alt="Personalverwaltung" />
+    <figcaption>Abb. 8 – Mitarbeiter, Rollen und 3-Monats-Kontrollen</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Mitarbeiter hinzufügen</strong> / <strong>Auswahl löschen</strong> / <strong>Speichern</strong></li>
+    <li>Stammdaten: Name, Personalnummer, Bus-Passwort, Telefon, Führerscheinablauf, FQN, Fahrerkarte</li>
+    <li><strong>3-Monats-Kontrollen:</strong> Führerschein, FQN, Fahrerkarte – mit Ablaufdatum und <strong>Kontrolle bestätigt</strong></li>
+    <li>Rollen: <strong>App (Handy/Tablet)</strong> als Hauptnutzer am Bus · <strong>Planer</strong> mit eigenem Login</li>
+  </ul>
+  <div class="warn">Gelbes Badge „+N“ in der Navigation weist auf fällige 3-Monats-Kontrollen hin (nur wenn Ablaufdatum eingetragen ist).</div>
+</section>
+
+<section id="fahrerdispo">
+  <h2>12. Fahrerdisposition</h2>
+  <figure>
+    <img src="screenshots/08-fahrerdisposition.png" alt="Fahrerdisposition Kalender" />
+    <figcaption>Abb. 9 – Wochenkalender pro Fahrer</figcaption>
+  </figure>
+  <h3>Toolbar</h3>
+  <ul>
+    <li><strong>◀ / ▶</strong> – Woche wechseln · <strong>Heute</strong> – aktuelle Woche</li>
+    <li><strong>Neuer Dienst</strong> – Dienst eintragen oder bearbeiten</li>
+    <li>Klick auf Fahrernamen → Personalverwaltung</li>
+  </ul>
+  <h3>Dialog „Neuer Dienst“</h3>
+  <ul>
+    <li>Fahrer, optional <strong>Dienstvorlage</strong> aus Bibliothek, Dienstnummer, Datum/Zeiten</li>
+    <li><strong>Geteilter Dienst:</strong> Arbeitsteil 1 + Pause (mind. 2 h) + Arbeitsteil 2, eine Dienstnummer</li>
+    <li>FPersV-Optionen: Ruhezeit 9 h, Lenkzeit 10 h, Wochenruhe 24 h</li>
+    <li>Geteilte Dienste: max. <strong>14 h Dienstschicht</strong> (Beginn Teil 1 bis Ende Teil 2); Lenkzeit/Ruhe separat nach FPersV</li>
+    <li><strong>Alle Teile einzeln disponieren</strong> – für getrennte Vorlagen-Teile (301 + 302)</li>
+  </ul>
+  <p>Speichern erfolgt beim Schließen des Dialogs; Disposition wird automatisch beim Verlassen des Bereichs gesichert.</p>
+</section>
+
+<section id="fahrzeugdispo">
+  <h2>13. Fahrzeugdisposition</h2>
+  <figure>
+    <img src="screenshots/09-fahrzeugdisposition.png" alt="Fahrzeugdisposition" />
+    <figcaption>Abb. 10 – Einsatzplanung pro Fahrzeug</figcaption>
+  </figure>
+  <p>Entspricht der Fahrerdisposition, bezogen auf <strong>Fahrzeuge</strong> statt Fahrer.</p>
+  <ul>
+    <li><strong>Neue Fahrt</strong> – Fahrzeug, Fahrtname, Datum und Uhrzeit von/bis</li>
+    <li><strong>Nur aktive Fahrzeuge</strong> – Filter in der Kalenderansicht</li>
+  </ul>
+</section>
+
+<section id="fahrzeugverwaltung">
+  <h2>14. Fahrzeugverwaltung</h2>
+  <figure>
+    <img src="screenshots/10-fahrzeugverwaltung.png" alt="Fahrzeugverwaltung" />
+    <figcaption>Abb. 11 – Fahrzeugstammdaten und Mängelkarte</figcaption>
+  </figure>
+  <h3>Tab Fahrzeuge</h3>
+  <ul>
+    <li>KOM-Daten (an App): Name, Telefonnummer</li>
+    <li>Planer-Daten: Typ, FIN, Gurte, Klima, Masse, HU/SP-Termine</li>
+    <li><strong>In Kalenderschnur anzeigen</strong> – Fahrzeug in Disposition sichtbar</li>
+  </ul>
+  <h3>Tab Mängelkarte</h3>
+  <ul>
+    <li><strong>Aus Dropbox laden</strong> / <strong>Aus Ordner laden</strong> / <strong>Nach Dropbox speichern</strong></li>
+    <li>Status: Neu → In Bearbeitung → Erledigt</li>
+    <li>Badge in Navigation bei neuen Einträgen</li>
+  </ul>
+</section>
+
+<section id="dienstvorlagen">
+  <h2>15. Dienstvorlagen</h2>
+  <figure>
+    <img src="screenshots/11-dienstvorlagen.png" alt="Dienstvorlagen Editor" />
+    <figcaption>Abb. 12 – Dienstvorlagen-Editor mit Fahrplanimport</figcaption>
+  </figure>
+  <h3>Workflow</h3>
+  <ol>
+    <li>Vorlagenname, Firmenlogo (für PDF), Dienstnummer, Betriebstag, Fahrzeug eintragen</li>
+    <li><strong>Fahrplan-Datei öffnen…</strong> (Excel, PDF, CSV) – Fahrten auswählen und <strong>übernehmen</strong></li>
+    <li>Fahrten bearbeiten, <strong>Intelligente Leerfahrten</strong> ergänzen</li>
+    <li>Bei langen Diensten: <strong>Intelligent Aufteilen</strong> (max. 9 h pro Teil) oder <strong>Dienst trennen</strong></li>
+    <li><strong>Kennzahlen aktualisieren</strong> – Dienstlänge, Lohnstunden, Pausen, Lenkzeit</li>
+    <li><strong>Speichern</strong> / <strong>Dienstvorlage erstellen</strong> (PDF)</li>
+  </ol>
+  <div class="warn"><strong>Limits:</strong> Aufteilung in Teile max. 9 h. Fertige Vorlage inkl. Leerfahrten max. 10 h (Speichern blockiert). Das Firmenlogo erscheint in der PDF-Fußzeile.</div>
+  <p>Bei geteiltem Dienst: separate PDF-Buttons für Teil 1, 2, 3.</p>
+</section>
+
+<section id="vorlagen-bibliothek">
+  <h2>16. Vorlagen-Bibliothek</h2>
+  <figure>
+    <img src="screenshots/12-vorlagen-bibliothek.png" alt="Vorlagen-Bibliothek" />
+    <figcaption>Abb. 13 – Gespeicherte Dienstvorlagen (Lesemodus)</figcaption>
+  </figure>
+  <p>Übersicht aller gespeicherten Dienstvorlagen. Links die Liste, rechts die Fahrt-Details (Teil 1–3). Vorlagen können in der Fahrerdisposition als Ausgangsbasis gewählt werden.</p>
+</section>
+
+<section id="nachrichten">
+  <h2>17. Nachrichten</h2>
+  <figure>
+    <img src="screenshots/13-nachrichten.png" alt="Nachrichtenvorlagen" />
+    <figcaption>Abb. 14 – KOM- und Mail-Vorlagen</figcaption>
+  </figure>
+  <ul>
+    <li><strong>KOM-Nachrichtenvorlagen</strong> – Textbausteine für Fahrzeugkommunikation</li>
+    <li><strong>Mail-Vorlagen</strong> – Vorlagen für E-Mail-Versand</li>
+    <li><strong>Speichern</strong> – alle Vorlagen sichern</li>
+  </ul>
+</section>
+
+<section id="anzeigen">
+  <h2>18. Anzeigen &amp; Hinweise</h2>
+  <figure>
+    <img src="screenshots/14-anzeigen-hinweise.png" alt="Anzeigen und Hinweise" />
+    <figcaption>Abb. 15 – Ziellisten und datumgesteuerte Hinweise</figcaption>
+  </figure>
+  <h3>Tab Zielliste / Außenanzeigen</h3>
+  <p>DS021T- und DS003a-Einträge für ITCS-Anzeigen: Front/Seite, DS001, Intervalle, Steuerblock.</p>
+  <h3>Tab Datumgesteuerte Hinweise</h3>
+  <p>Texte mit Start- und Enddatum für zeitlich begrenzte Fahrgastinformationen.</p>
+</section>
+
+<section id="sev">
+  <h2>19. SEV-Schilder (NRW)</h2>
+  <figure>
+    <img src="screenshots/15-sev-schilder.png" alt="SEV-Schilder Editor" />
+    <figcaption>Abb. 16 – Ersatzverkehr-Schilder NRW-Layout</figcaption>
+  </figure>
+  <p>Erstellung von Ersatzverkehrsschildern im NRW-A3-Querformat.</p>
+  <ul>
+    <li>Linie, Ziel, Haltestellen aus Route übernehmen, <strong>Richtung umkehren</strong></li>
+    <li>Betreiber-Logos, QR-Codes im PDF-Fuß</li>
+    <li><strong>PDF erstellen…</strong> – Druckfertige Ausgabe</li>
+    <li>Vorlagen speichern, laden, aktualisieren</li>
+  </ul>
+</section>
+
+<section id="zeitwirtschaft">
+  <h2>20. Zeitwirtschaft</h2>
+  <figure>
+    <img src="screenshots/16-zeitwirtschaft.png" alt="Zeitwirtschaft" />
+    <figcaption>Abb. 17 – Arbeitszeiten aus Fahrzeug-Stempelungen</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Aus Dropbox laden</strong> / <strong>Aus Ordner laden</strong> – Stempeldaten der Fahrer</li>
+    <li>Monatsfilter, <strong>Zeitkorrektur</strong>, <strong>Storno</strong></li>
+    <li><strong>PDF erstellen</strong> / <strong>CSV exportieren</strong></li>
+    <li>Spalten: Fahrzeug, Kommen, Gehen, Arbeitszeit, Lohnstunden</li>
+  </ul>
+</section>
+
+<section id="versand">
+  <h2>21. Versand &amp; Versionen</h2>
+  <figure>
+    <img src="screenshots/17-versand.png" alt="Versand und Versionen" />
+    <figcaption>Abb. 18 – Daten an Fahrzeuge senden</figcaption>
+  </figure>
+  <h3>Lokale Dateien</h3>
+  <p><strong>JSON importieren</strong> / <strong>JSON exportieren</strong> – Format JSON v1.0 (<code>exportType: routes</code>).</p>
+  <h3>Dropbox (an Fahrzeuge)</h3>
+  <table>
+    <tr><th>Button</th><th>Wirkung</th></tr>
+    <tr><td><strong>Von Dropbox laden</strong></td><td><code>routes_export.json</code> vom Server holen</td></tr>
+    <tr><td><strong>Nach Dropbox senden</strong></td><td>Aktuelle Routen hochladen</td></tr>
+    <tr><td><strong>Senden + Fernupdate</strong></td><td>Upload + Anstoß zum Neuladen auf dem Fahrzeug (während Fahrt, Fahrgastinfo bleibt)</td></tr>
+    <tr><td><strong>Für Leitstelle speichern</strong></td><td><code>leitstelle_stand.json</code> für Leitstellen-App</td></tr>
+  </table>
+  <h3>Versionen (Planer-Snapshots)</h3>
+  <p>Mit <strong>Version speichern</strong> einen benannten Stand sichern; später <strong>Version laden</strong> oder <strong>löschen</strong>.</p>
+  <div class="tip"><strong>Typischer Ablauf zur App:</strong> Im Planer bearbeiten → <strong>Nach Dropbox senden</strong> → GPSAnsagen-App lädt automatisch von Dropbox.</div>
+</section>
+
+<section id="einstellungen">
+  <h2>22. Einstellungen</h2>
+  <figure>
+    <img src="screenshots/18-einstellungen.png" alt="Einstellungen" />
+    <figcaption>Abb. 19 – Dropbox, Firmenlogos, Verbindungstest</figcaption>
+  </figure>
+  <ul>
+    <li>Dropbox verbinden / trennen / testen, Ordnerpfad</li>
+    <li><strong>Firmenlogos</strong> – für Dienstvorlagen-PDF: hinzufügen, benennen, entfernen</li>
+    <li>Verbindungstest mit Datei- und Ordnerinformationen</li>
+  </ul>
+</section>
+
+<section id="backup">
+  <h2>23. Backup &amp; Dateipfade</h2>
+  <table>
+    <tr><th>Inhalt</th><th>Pfad</th></tr>
+    <tr><td>Programm</td><td><code>C:\Program Files\Smart-OEPNV\Planer</code></td></tr>
+    <tr><td>Benutzerdaten</td><td><code>%AppData%\Smart-OEPNV\Planer</code></td></tr>
+    <tr><td>Fahrer, Fahrzeuge, Disposition</td><td><code>workspace\planner_local_roster.json</code></td></tr>
+    <tr><td>Routen-Paket</td><td><code>workspace\routes_export.json</code></td></tr>
+    <tr><td>Automatische Versionen</td><td><code>workspace\backups\</code></td></tr>
+    <tr><td>Firmenlogos</td><td><code>workspace\branding\</code></td></tr>
+  </table>
+  <p>Gesamt-Backup: Skript <code>Backup-All-SmartOepnv.ps1</code> im Projektordner (siehe <code>BACKUP-ANLEITUNG.md</code>).</p>
+  <h3>Screenshots aktualisieren</h3>
+  <p>Die Abbildungen in dieser Anleitung können mit folgendem Befehl neu erzeugt werden:</p>
+  <p><code>powershell -ExecutionPolicy Bypass -File docs\screenshots\Capture-PlanerScreenshots.ps1</code></p>
+</section>
+
+<section id="glossar">
+  <h2>24. Glossar</h2>
+  <table>
+    <tr><th>Begriff</th><th>Bedeutung</th></tr>
+    <tr><td><strong>GPSAnsagen</strong></td><td>Android-App auf dem Bus (Ansagen, GPS, ITCS-Anbindung)</td></tr>
+    <tr><td><strong>KOM</strong></td><td>Kommunikation Fahrzeug ↔ Leitstelle/Planer</td></tr>
+    <tr><td><strong>ITCS</strong></td><td>Fahrzeugrechner / Innen- und Außenanzeigen</td></tr>
+    <tr><td><strong>FPersV</strong></td><td>Fahrpersonalverordnung (Lenk- und Ruhezeiten)</td></tr>
+    <tr><td><strong>HU / SP</strong></td><td>Hauptuntersuchung / Sicherheitsprüfung am Fahrzeug</td></tr>
+    <tr><td><strong>FQN</strong></td><td>Fahrerqualifikationsnachweis</td></tr>
+    <tr><td><strong>SEV</strong></td><td>Schienenersatzverkehr</td></tr>
+    <tr><td><strong>Leerfahrt</strong></td><td>Fahrt ohne Fahrgäste zwischen Einsatzorten</td></tr>
+    <tr><td><strong>Geteilter Dienst</strong></td><td>Ein Dienst mit Pause (Dispositions-Checkbox), nicht Vorlagen-Teilung</td></tr>
+    <tr><td><strong>Fernupdate</strong></td><td>Routen-Neuladen auf dem Bus ohne Neustart der App</td></tr>
+  </table>
+</section>
+</main>
+
+<footer>
+  Smart-ÖPNV Planer · Benutzeranleitung · Stand Juni 2026 · Screenshots aus der laufenden Anwendung
+</footer>
+</body>
+</html>

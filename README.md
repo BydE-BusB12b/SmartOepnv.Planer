@@ -42,6 +42,10 @@ powershell -ExecutionPolicy Bypass -File installer\scripts\Build-Installer.ps1
 
 Ergebnis: `dist\Setup-Smart-OEPNV-Planer-x64.exe`
 
+## Benutzeranleitung
+
+Vollständige Anleitung mit Screenshots: [`docs/BENUTZERANLEITUNG.html`](docs/BENUTZERANLEITUNG.html) (im Browser öffnen). PDF: [`dist/Benutzeranleitung-Smart-OEPNV-Planer.pdf`](dist/Benutzeranleitung-Smart-OEPNV-Planer.pdf).
+
 ## Technik
 
 - .NET 8 WPF, Material Design, MVVM

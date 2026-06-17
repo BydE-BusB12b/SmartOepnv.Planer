@@ -20,3 +20,7 @@ publish/
 # OS
 Thumbs.db
 Desktop.ini
+
+# Lokale Demo-/Workspace-Backups (zu gross fuer GitHub)
+docs/screenshots/.manual-demo-backup/
+docs/screenshots/*.manual-backup.json
