@@ -21,7 +21,8 @@ public partial class App : Application
 
         mainWindow.Show();
 
-        if (!await SmartOepnvAppHost.RunPlanerLoginGateAsync(mainWindow))
+        var gate = await SmartOepnvAppHost.RunPlanerLoginGateAsync(mainWindow);
+        if (!gate.Success)
         {
             mainWindow.Close();
 
@@ -30,8 +31,7 @@ public partial class App : Application
             return;
         }
 
-        mainWindow.SetLoginOverlay(false);
-        mainWindow.BeginPostLoginInitialization();
+        mainWindow.BeginPostLoginInitialization(gate);
     }
 
     protected override void OnExit(ExitEventArgs e)

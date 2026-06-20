@@ -68,6 +68,27 @@ if (-not (Test-Path $DistDir)) {
 if ($LASTEXITCODE -ne 0) { throw "Inno Setup Build fehlgeschlagen" }
 
 $SetupExe = Get-ChildItem $DistDir -Filter "Setup-Smart-OEPNV-Planer-x64*.exe" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+
+function Get-ProjectVersion {
+    param([string]$CsprojPath)
+    [xml]$doc = Get-Content -LiteralPath $CsprojPath -Encoding UTF8
+    foreach ($group in $doc.Project.PropertyGroup) {
+        if ($group.Version) {
+            return "$($group.Version)".Trim()
+        }
+    }
+    throw "Keine Version in $CsprojPath gefunden."
+}
+
+if ($SetupExe) {
+    $version = Get-ProjectVersion -CsprojPath $Project
+    $uploadScript = Join-Path (Split-Path -Parent $Root) "SmartOepnv.Shared\scripts\Upload-DistSetupToDropbox.ps1"
+    if (-not (Test-Path $uploadScript)) {
+        throw "Upload-Skript fehlt: $uploadScript"
+    }
+    & $uploadScript -SetupExePath $SetupExe.FullName -Product Planer -Version $version
+}
+
 Write-Host ""
 Write-Host "=== FERTIG ===" -ForegroundColor Green
 if ($SetupExe) {
