@@ -83,7 +83,7 @@ $Root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $OutDir = $PSScriptRoot
 $ExeCandidates = @(
     (Join-Path $Root "publish\win-x64\Smart-OEPNV-Planer.exe"),
-    (Join-Path $Root "src\SmartOepnv.Planer\bin\Release\net8.0-windows\Smart-OEPNV-Planer.exe"),
+    (Join-Path $Root "src\SmartOepnv.Planer\bin\Release\net8.0-windows10.0.17763\Smart-OEPNV-Planer.exe"),
     "${env:ProgramFiles}\Smart-OEPNV\Planer\Smart-OEPNV-Planer.exe"
 )
 $Exe = $ExeCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1

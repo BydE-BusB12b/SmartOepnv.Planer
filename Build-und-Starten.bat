@@ -1,8 +1,8 @@
 @echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-title Smart-OEPNV Planer – Build + Start
-echo.
+title Smart-OEPNV Planer - Build + Start
+echo(
 echo === Baue Release-Version ===
 dotnet build "src\SmartOepnv.Planer\SmartOepnv.Planer.csproj" -c Release
 if errorlevel 1 (
@@ -10,8 +10,8 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
-echo.
+echo(
 echo === Starte EXE ===
-start "" "%~dp0src\SmartOepnv.Planer\bin\Release\net8.0-windows\Smart-OEPNV-Planer.exe"
+start "" "%~dp0src\SmartOepnv.Planer\bin\Release\net8.0-windows10.0.17763\Smart-OEPNV-Planer.exe"
 echo Planer gestartet.
 timeout /t 3 >nul
