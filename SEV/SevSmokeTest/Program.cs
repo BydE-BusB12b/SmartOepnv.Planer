@@ -43,4 +43,24 @@ SevSignPdfGenerator.Generate(
     Path.Combine(outputDir, "_layout_4logos.pdf"),
     assets);
 
-Console.WriteLine("Generated RE13 + S28 + 4-logos layout PDFs in " + outputDir);
+SevSignPdfGenerator.Generate(
+    new SevSignData
+    {
+        Line = "RB 36",
+        Destination = "Oberhausen, Hauptbahnhof",
+        StartStation = "Duisburg, Ruhrort",
+        DestinationVariant = SevDestinationVariant.StartAndDestination,
+        Stops =
+        [
+            "Duisburg, Ruhrort",
+            "Duisburg, Meiderich Süd",
+            "Duisburg, Meiderich Ost",
+            "Duisburg, Obermeiderich",
+            "Oberhausen, Hbf"
+        ],
+        Operators = [SevOperatorKind.RheinRuhrBahn]
+    },
+    Path.Combine(outputDir, "_layout_rb36_v2.pdf"),
+    assets);
+
+Console.WriteLine("Generated RE13 + S28 + 4-logos + RB36-V2 layout PDFs in " + outputDir);
